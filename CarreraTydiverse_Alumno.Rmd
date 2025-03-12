@@ -378,13 +378,12 @@ tidy_students2
 
 
 
-
 ```
 32. Considera que la columna `class` queremos especificarla con valores, 1,2,3,4 y 5 en lugar de class1, ..., class5. En librería de importación de datos (`readr`) se proporcionan funciones que permite identificar y extraer diversos tipos de datos. Son las funciones `parse_XXXX`. Observa el efecto de aplicar `parse_number('class5')` y utiliza el resultado para realizar la tarea solicitada.
 
 ```{r}
-
-
+students3 <- students3 %>% 
+  mutate(class = parse_number(class))
 
 
 
@@ -392,14 +391,13 @@ tidy_students2
 ```
 33. Observa el conjunto `students4` donde se presenta el problema de tener varias observaciones en la misma tabla. Separa el conjunto en dos tablas, una que contenga información relativa a los estudiantes, que llamarás `student_info`, que no debe contener repeticiones, y otra con las calificaciones y la clave primaria que enlaza ambas tablas(`id`), que llamarás `gradebook`.
 ```{r}
-
-
-
-
-
-
-
-
+student_info <- students4 %>%
+  select(id, name, sex, class)%>%  
+  distinct()
+gradebook <- students4 %>%
+  select(id, midterm, final)
+student_info
+gradebook
 
 ```
 34. Consideremos el caso de una observación almacenada en varias tablas. Observa los datos almacenados en `failed` y `passed` con la información de los alumnos que suspeden (calificaciones C,D,E,F) y los que aprueban (calificaciones A, B). Debes unir ambos conjuntos en uno que contenga una columna adicional llamada `status` que indicará `passed` o `failed` según la situación de cada alumno, puedes usar la función `bind_rows`.
@@ -414,11 +412,6 @@ tidy_students2
 Considera los datos almacenado en `sat` y haz las transformaciones adecuadas para que las columnas del conjunto `tidy` sean `score_range, part, sex, count` en ese orden. Ten en cuenta que los datos totales no es necesario almacenarlos ya que se pueden generar a posteriori.
 
 ```{r}
-
-
-
-
-
 
 ```
 
