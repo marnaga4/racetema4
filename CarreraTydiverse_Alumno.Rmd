@@ -42,6 +42,8 @@ language:
 
 # CONFIGURACIÓN GENERAL
 library(knitr)
+library(dplyr)
+library(tidyr)
 options(width = 100)
 # Opciones generales chunks
 
@@ -132,6 +134,7 @@ glimpse(cran)
 
 4. Elige únicamente las variables `ip_id, package, country`
 ```{r}
+select(cran, "ip_id", "package", "country" )
 
 ```
 5. Elige todas las variables entre `r_arch y country` 
